@@ -1,0 +1,34 @@
+{% extends 'tasks/base.html'%}
+
+{% block content %}
+        {% if user.is_authenticated %}
+        <h2>Your posts:</h2>
+        <div class="container">
+            {% for task in tasks%}
+            {% if task.author == user %}
+                <div class="bg-body-tertiary border rounded-3 mt-3">
+                <li><a class = 'nav-link' href="{% url 'task_detail' task.pk %}"> {{task.title}} </a> </li>
+                </div>
+            {% endif %}
+        {% endfor %}
+        <h2>Other Posts: </h2>
+        <ol>
+        {% for task in tasks %}
+            {% if task.author != user %}
+            <div class="bg-body-tertiary border rounded-3 mt-3">
+                <li><a class="nav-link" href="{% url 'task_detail' task.pk %}"> {{task.title}} </a> </li>
+            </div>
+            {% endif %}
+        {% endfor %}
+        </ol>
+        {% else %}
+             <h2>All Posts: </h2>
+        <ol>
+        {% for task in tasks %}
+            <div class="bg-body-tertiary border rounded-3 mt-3">
+                <li><a class = 'nav-link' href="{% url 'task_detail' task.pk %}"> {{task.title}} </a> </li></div>
+        {% endfor %}
+        </ol>
+        {% endif %}
+        </div>
+{% endblock %}

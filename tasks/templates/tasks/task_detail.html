@@ -1,0 +1,13 @@
+{% extends 'tasks/base.html'%}
+
+{% block content %}
+    <h1>
+        {{task.title}} </h1>
+    <p>
+        {{task.descript}}
+    </p>
+    {% if task.author == user or user.is_superuser %}
+    <a href="{% url 'task_update' task.pk %}"> Edit task </a>
+    <a href="{% url 'task_delete' task.pk %}"> Delete task </a>
+    {% endif %}
+{% endblock %}

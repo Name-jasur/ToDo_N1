@@ -1,0 +1,15 @@
+{% extends '../tasks/base.html'%}
+
+{% block title %} Sign In{% endblock %}
+
+
+{% block content %}
+<form action="" method="post">
+  {% csrf_token %}
+<!--  {{ form.as_p }}-->
+  {% for field in form%}
+    <b><i>{{field.name}}</i></b> {{field}} <br> <br>
+  {% endfor %}
+  <button type="submit">Sign In</button>
+</form>
+{% endblock %}
